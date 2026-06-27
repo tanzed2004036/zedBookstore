@@ -8,12 +8,14 @@ const WriterDetails = () => {
   const [writer, setWriter] = useState(null);
   const [books, setBooks] = useState([]);
   const API_URL = import.meta.env.VITE_API_URL;
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchWriterDetails = async () => {
+      setLoading(true);
       try {
         const response = await axios.get(
-          `${API_URL}/zed/writers/${encodeURIComponent(name)}`
+          `${API_URL}/zed/writers/${encodeURIComponent(name)}`,
         );
         setWriter(response.data.writer);
         setBooks(response.data.books);
@@ -21,14 +23,28 @@ const WriterDetails = () => {
         console.error("Failed to load writer details", error);
         setWriter(null);
         setBooks([]);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchWriterDetails();
   }, [name]);
 
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-[60vh]">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
+  }
+
   if (!writer) {
-    return <p className="text-center mt-10">Loading writer details...</p>;
+    return (
+      <div className="flex justify-center items-center h-[60vh]">
+        <p className="text-xl text-red-500">লেখকের তথ্য পাওয়া যায়নি।</p>
+      </div>
+    );
   }
 
   return (
@@ -65,7 +81,6 @@ const WriterDetails = () => {
             )}
           </div>
         </div>
-
       </div>
 
       {/* Books section  */}

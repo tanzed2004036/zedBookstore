@@ -91,12 +91,13 @@ const router = createBrowserRouter([
   {
     path: "/categories/:id",
     element:
-    <div className="py-12" >
+    <div div className="min-h-screen flex flex-col" >
       <Navbar/>
-      <Category />
-      <CategoryDetails />        
-     
-
+      
+     <main className="flex-1">
+            <Category />
+      <CategoryDetails />  
+     </main>
       <Footer/>
     </div>  
   },
