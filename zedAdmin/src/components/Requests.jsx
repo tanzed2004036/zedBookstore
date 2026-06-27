@@ -5,9 +5,11 @@ const BookRequestList = () => {
   const API_URL = import.meta.env.VITE_API_URL;
   const [requests, setRequests] = useState([]);
   const [selectedRequest, setSelectedRequest] = useState(null); 
+  const [loadding,setLoding]=useState(false)
 
   // fetch all requests
   useEffect(() => {
+    setLoding(true)
     const fetchRequests = async () => {
       try {
         const res = await axios.get(`${API_URL}/zed/requests`);
@@ -15,10 +17,17 @@ const BookRequestList = () => {
       } catch (error) {
         console.error("Failed to fetch requests", error);
       }
+      finally{
+        setLoding(false)
+      }
     };
 
     fetchRequests();
   }, []);
+
+  if(loadding){
+    return "loadding....."
+  }
 
   // delete request by id
   const handleDelete = async (id) => {
