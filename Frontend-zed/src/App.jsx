@@ -28,10 +28,13 @@ const router = createBrowserRouter([
   {
     path: "/books",
     element: (
-      <div>
+      <div div className="min-h-screen flex flex-col">
         <Navbar />
+        <main className="flex-1">
         <BookSearch />
-        <Books />
+        <Books />          
+        </main>
+
         <Footer />
       </div>
     ),
@@ -39,9 +42,11 @@ const router = createBrowserRouter([
   {
     path: "/books/:id",
     element: (
-      <div>
+      <div div className="min-h-screen flex flex-col">
         <Navbar />
-        <BookDetails />
+        <main className="flex-1">
+        <BookDetails />          
+        </main>
         <Footer />
       </div>
     ),
@@ -49,10 +54,13 @@ const router = createBrowserRouter([
   {
     path: "/writers",
     element: (
-      <div className="py-10">
+      <div div className="min-h-screen flex flex-col">
         <Navbar />
+         <main className="flex-1">
         <WriterSearch/>
-        <Writers />
+        <Writers />          
+         </main>
+
         <Footer />
       </div>
     ),
@@ -60,38 +68,47 @@ const router = createBrowserRouter([
   {
     path: "/writers/:name",
     element: (
-      <div>
+      <divdiv className="min-h-screen flex flex-col" >
         <Navbar />
-        <WriterDetails />
+        <main className="flex-1">
+        <WriterDetails />          
+        </main>
         <Footer />
-      </div>
+      </divdiv>
     ),
   },
   {
     path: "/categories",
     element:
-    <div className="py-12"> 
+    <div div className="min-h-screen flex flex-col"> 
       <Navbar/>
+      <main className="flex-1">
       <Category />
+       </main>
       <Footer/>
     </div> 
   },
   {
     path: "/categories/:id",
     element:
-    <div className="py-12">
+    <div className="py-12" >
       <Navbar/>
       <Category />
-      <CategoryDetails />
+      <CategoryDetails />        
+     
+
       <Footer/>
     </div>  
   },
   {
     path:"/requests",
     element:
-    <div>
+    <div div className="min-h-screen flex flex-col">
       <Navbar/>
-      <BookRequestForm/>
+      <main className="flex-1">
+      <BookRequestForm/>        
+      </main>
+
       <Footer/>
     </div>
   }

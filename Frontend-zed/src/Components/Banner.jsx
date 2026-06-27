@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BannerImages } from "../assets/image";
+import { BannerImages } from "../assets/image"
 
 function Banner() {
   const [currentIndex, setCurrentIndex] = useState(0);

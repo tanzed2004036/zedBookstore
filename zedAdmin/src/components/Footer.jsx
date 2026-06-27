@@ -3,7 +3,7 @@ import React from "react";
 function Footer() {
   return (
     <div className="mt-4 ">
-      <footer className=" bottom-0  footer flex flex-col sm:flex-row justify-between items-center bg-green-500 text-neutral-content p-10 gap-8">
+      <footer className=" bottom-0  footer flex flex-col sm:flex-row justify-between items-center bg-gradient-to-r from-slate-100 via-cyan-50 to-emerald-50 bg-gradient-to-r from-teal-200 via-sky-100 to-green-300 text-neutral-content p-10 gap-8">
         {/* Left Side: Name */}
         <aside className="text-center sm:text-left">
           <p className="text-lg font-semibold">Tanzed Hasan</p>

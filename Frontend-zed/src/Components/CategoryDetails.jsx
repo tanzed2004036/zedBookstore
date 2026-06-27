@@ -7,8 +7,10 @@ function CategoryDetails() {
   const { id } = useParams();
   const [filteredBooks, setFilteredBooks] = useState([]);
   const API_URL = import.meta.env.VITE_API_URL;
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     axios
       .get(`${API_URL}/zed/books`)
       .then((res) => {
@@ -17,8 +19,19 @@ function CategoryDetails() {
       })
       .catch((error) => {
         console.error("Error fetching books:", error);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, [id]);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-[60vh]">
+        <span className="loading loading-spinner loading-lg text-primary"></span>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-screen-xl mx-auto px-4 py-10">
