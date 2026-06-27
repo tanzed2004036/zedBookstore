@@ -41,20 +41,20 @@ const handlePdfChange = (e) => {
 
   // //  Helper function — filename clean
 
-  // const sanitizeFileName = (file) => {
-  //   const ext = file.name.split(".").pop();
-  //   const nameWithoutExt = file.name.split(".").slice(0, -1).join("."); 
+  const sanitizeFileName = (file) => {
+    const ext = file.name.split(".").pop();
+    const nameWithoutExt = file.name.split(".").slice(0, -1).join("."); 
 
-  //   const clean =
-  //     nameWithoutExt
-  //       .replace(/\[.*?\]/g, "")
-  //       .replace(/[^\w\u0980-\u09FF._-]/g, "_")
-  //       .replace(/_+/g, "_")
-  //       .replace(/^_|_$/g, "")
-  //       .trim() || `file_${Date.now()}`;
+    const clean =
+      nameWithoutExt
+        .replace(/\[.*?\]/g, "")
+        .replace(/[^\w\u0980-\u09FF._-]/g, "_")
+        .replace(/_+/g, "_")
+        .replace(/^_|_$/g, "")
+        .trim() || `file_${Date.now()}`;
 
-  //   return new File([file], `${clean}.${ext}`, { type: file.type });
-  // };
+    return new File([file], `${clean}.${ext}`, { type: file.type });
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
