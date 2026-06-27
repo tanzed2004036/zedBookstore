@@ -5,7 +5,7 @@ const bookSchema = new mongoose.Schema(
     titleBn: {
       type: String,
       required: [true, "বইয়ের বাংলা নাম আবশ্যক"],
-      trim: true, // Removes extra spaces from the beginning and end
+      trim: true, 
     },
     titleEn: {
       type: String,
@@ -24,7 +24,7 @@ const bookSchema = new mongoose.Schema(
     },
     image: {
       type: String,
-      required: [true, "ছবি আবশ্যক"], // Will store the Cloudinary image URL
+      required: [true, "ছবি আবশ্যক"], 
     },
     details: {
       type: String,
@@ -32,7 +32,7 @@ const bookSchema = new mongoose.Schema(
     },
     pdf: {
       type: String,
-      required: [true, "PDF ফাইল আবশ্যক"], // Will store the Cloudinary PDF URL
+      required: [true, "PDF ফাইল আবশ্যক"], 
     },
   },
   {

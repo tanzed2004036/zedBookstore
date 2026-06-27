@@ -59,7 +59,7 @@ export const deleteWriter = async (req, res) => {
 };
 
 
-// writer name  details + book
+
 export const getWriterByName = async (req, res) => {
   try {
     const name = req.params.name;

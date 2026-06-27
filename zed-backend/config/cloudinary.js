@@ -8,7 +8,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-// ✅ Single storage that handles both image and PDF based on fieldname
+//  Single storage  both image and PDF 
 const combinedStorage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: async (req, file) => {

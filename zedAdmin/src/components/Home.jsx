@@ -6,22 +6,23 @@ function AdminHome() {
     writers: 0,
     requests: 0,
   });
+  const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchCounts = async () => {
       try {
         // Fetch all data
         const [booksRes, writersRes, requestsRes] = await Promise.all([
-          fetch("http://localhost:5000/zed/books"),
-          fetch("http://localhost:5000/zed/writers"),
-          fetch("http://localhost:5000/zed/requests"),
+          fetch(`${API_URL}/zed/books`),
+          fetch(`${API_URL}/zed/writers`),
+          fetch(`${API_URL}/zed/requests`),
         ]);
 
         const booksData = await booksRes.json();
         const writersData = await writersRes.json();
         const requestsData = await requestsRes.json();
 
-        // Set counts based on array length
+
         setCounts({
           books: booksData.length,
           writers: writersData.length,

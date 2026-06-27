@@ -57,10 +57,9 @@ const handleDownload = async () => {
     link.click();
     document.body.removeChild(link);
 
-    window.URL.revokeObjectURL(blobUrl); // memory cleanup
+    window.URL.revokeObjectURL(blobUrl); 
   } catch (err) {
     console.error("Download failed:", err);
-    // Fallback — নতুন tab-এ open করবে
     window.open(book.pdf, "_blank");
   }
 };

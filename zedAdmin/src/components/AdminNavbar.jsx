@@ -6,7 +6,7 @@ function AdminNavbar() {
   return (
     <nav className="bg-gray-800 text-white shadow-md fixed top-0 left-0 w-full z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-14">
-        {/* Logo / Title */}
+        {/* Logo  */}
         <div className="font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl">
           Admin zedBookstore
         </div>
@@ -59,7 +59,7 @@ function AdminNavbar() {
             </NavLink>
           </div>
 
-          {/* Logout button on right side */}
+          {/* Logout button  */}
           <button
             onClick={() => {
               localStorage.removeItem("token");

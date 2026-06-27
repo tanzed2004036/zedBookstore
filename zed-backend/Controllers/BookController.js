@@ -1,7 +1,7 @@
 import Book from "../Models/BookModel.js";
 import { cloudinary } from "../config/cloudinary.js";  
 
-// 📚 Get all books
+//  Get all books
 export const getBooks = async (req, res) => {
   try {
     const books = await Book.find().sort({ createdAt: -1 }); 
@@ -12,12 +12,11 @@ export const getBooks = async (req, res) => {
   }
 };
 
-// 📚 Add a new book
+//  Add  new book
 export const addBook = async (req, res) => {
   try {
     const { titleBn, titleEn, writer, category, details } = req.body;
 
-    // multer-storage-cloudinary automatically uploads files and puts the Cloudinary URL in .path
     const image = req.files?.image?.[0]?.path;
     const pdf = req.files?.pdf?.[0]?.path;
 
@@ -31,15 +30,14 @@ export const addBook = async (req, res) => {
       writer,
       category,
       details,
-      image, // Cloudinary Secure URL
-      pdf,   // Cloudinary Secure URL
+      image, 
+      pdf,   
     });
 
     const saved = await newBook.save();
     res.status(201).json({ message: "✅ বই যোগ করা হয়েছে", book: saved });
   } catch (err) {
     console.error(err);
-    // Handling MongoDB Duplicate Key Error (e.g., if title already exists)
     if (err.code === 11000) {
       return res.status(400).json({ message: "❌ এই নামের বই ইতিমধ্যে ডাটাবেজে রয়েছে।" });
     }
@@ -48,24 +46,20 @@ export const addBook = async (req, res) => {
 };
 
 // Helper function to extract Public ID from Cloudinary URL
-// Cloudinary URL looks like: https://res.cloudinary.com/cloud_name/image/upload/v123456/folder/filename.jpg
-// We need: "folder/filename" to delete it
 const getPublicIdFromUrl = (url) => {
   try {
     const parts = url.split('/');
     const uploadIndex = parts.indexOf('upload');
     if (uploadIndex === -1) return null;
     
-    // Join all parts after 'vXXXXX' (version tag)
     const fileParts = parts.slice(uploadIndex + 2).join('/');
-    // Remove the file extension (.jpg, .pdf etc)
     return fileParts.split('.').slice(0, -1).join('.');
   } catch (error) {
     return null;
   }
 };
 
-// 🗑️ Delete a book by ID
+//  Delete a book 
 export const deleteBook = async (req, res) => {
   try {
     const { id } = req.params;
@@ -75,24 +69,23 @@ export const deleteBook = async (req, res) => {
       return res.status(404).json({ message: "বই পাওয়া যায়নি" });
     }
 
-    // 1️⃣ Delete Image from Cloudinary
+    //  Delete Image from Cloudinary
     if (book.image) {
       const imagePublicId = getPublicIdFromUrl(book.image);
       if (imagePublicId) {
-        await cloudinary.uploader.destroy(imagePublicId); // Deletes image
+        await cloudinary.uploader.destroy(imagePublicId); 
       }
     }
 
-    // 2️⃣ Delete PDF from Cloudinary
+    //  Delete PDF from Cloudinary
     if (book.pdf) {
       const pdfPublicId = getPublicIdFromUrl(book.pdf);
       if (pdfPublicId) {
-        // Since PDF is uploaded as 'raw' file, we must specify resource_type: 'raw'
         await cloudinary.uploader.destroy(pdfPublicId, { resource_type: 'raw' }); 
       }
     }
 
-    // 3️⃣ Delete Book Document from MongoDB
+    //  Delete Book  from MongoDB
     await Book.findByIdAndDelete(id);
     res.json({ message: "🗑️ বই এবং ক্লাউডিনারি থেকে ফাইল মুছে ফেলা হয়েছে" });
   } catch (err) {
@@ -101,7 +94,7 @@ export const deleteBook = async (req, res) => {
   }
 };
 
-// 🔍 Get a single book by ID
+//  Get a single book 
 export const getBookById = async (req, res) => {
   try {
     const book = await Book.findById(req.params.id);
@@ -114,7 +107,7 @@ export const getBookById = async (req, res) => {
 };
 
 
-// // ⬇️ Download a book PDF
+// //  Download a book PDF
 // export const downloadBook = async (req, res) => {
 //   try {
 //     const { id } = req.params;

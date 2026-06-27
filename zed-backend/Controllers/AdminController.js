@@ -1,11 +1,11 @@
-// controllers/AdminController.js
+
 import Admin from "../Models/AdminModel.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 const JWT_SECRET = process.env.JWT_SECRET || "your_jwt_secret";
 
-// Create a new admin (signup)
+// Create a new admin 
 export const createAdmin = async (req, res) => {
   
   const { email, password } = req.body;

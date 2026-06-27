@@ -4,7 +4,7 @@ import axios from "axios";
 const BookRequestList = () => {
   const API_URL = import.meta.env.VITE_API_URL;
   const [requests, setRequests] = useState([]);
-  const [selectedRequest, setSelectedRequest] = useState(null); // for modal
+  const [selectedRequest, setSelectedRequest] = useState(null); 
 
   // fetch all requests
   useEffect(() => {
@@ -69,7 +69,7 @@ const BookRequestList = () => {
                   </td>
                   <td
                     className="py-2 px-3 text-center"
-                    onClick={(e) => e.stopPropagation()} // prevent modal open
+                    onClick={(e) => e.stopPropagation()} 
                   >
                     <button
                       onClick={() => handleDelete(req._id)}
@@ -89,7 +89,7 @@ const BookRequestList = () => {
       {selectedRequest && (
         <div className="fixed inset-0 backdrop-blur-sm bg-black/20 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg shadow-lg p-6 max-w-lg w-full max-h-[80vh] overflow-y-auto break-words relative">
-            {/* Close Button */}
+
             <button
               onClick={() => setSelectedRequest(null)}
               className="absolute top-2 right-2 text-gray-600 hover:text-red-500 text-xl font-bold pr-2"

@@ -16,7 +16,7 @@ const RecentBooks = () => {
       .then((res) => {
         let data = res.data;
         if (Array.isArray(data)) {
-          // Sort by creation date if available, then take last 6
+          
           const recentBooks = data
             .slice()
             .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))

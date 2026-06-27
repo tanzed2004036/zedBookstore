@@ -14,12 +14,11 @@ const Category = () => {
       .then((res) => {
         const books = res.data;
 
-        // Extract unique category names from books
         const uniqueCategories = [
           ...new Set(books.map((book) => book.category)),
         ];
 
-        // Make categories objects with IDs
+
         const categoryList = uniqueCategories.map((cat) => ({
           id: cat,
           name: cat,

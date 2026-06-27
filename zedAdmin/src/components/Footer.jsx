@@ -4,13 +4,12 @@ function Footer() {
   return (
     <div className="mt-4 ">
       <footer className=" bottom-0  footer flex flex-col sm:flex-row justify-between items-center bg-gradient-to-r from-slate-100 via-cyan-50 to-emerald-50 bg-gradient-to-r from-teal-200 via-sky-100 to-green-300 text-neutral-content p-10 gap-8">
-        {/* Left Side: Name */}
+
         <aside className="text-center sm:text-left">
           <p className="text-lg font-semibold">Tanzed Hasan</p>
           <p className="text-sm">Founder, ZED Bookstore</p>
         </aside>
 
-        {/* Center: Social Icons */}
         <div className="flex flex-col items-center gap-2">
           <h6 className="footer-title">Follow Us</h6>
           <div className="flex gap-6">
@@ -86,7 +85,6 @@ function Footer() {
           </div>
         </div>
 
-        {/* Right Side: Contact Info */}
         <aside className="text-center sm:text-right">
           <p className="text-sm">📞 01312428756</p>
           <p className="text-sm">✉️ kmtanzedhasan26@gmail.com</p>

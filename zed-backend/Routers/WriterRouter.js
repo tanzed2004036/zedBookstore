@@ -1,22 +1,22 @@
-// writerRoutes.js (assumed)
+
 import express from "express";
 import { addWriter, getWriters,deleteWriter,getWriterByName } from "../Controllers/WriterController.js";
 import { uploadFiles } from "../config/cloudinary.js";
 
 const router = express.Router();
 
-// ➕ Add writer (with image)
+// Add writer 
 router.post("/writers", uploadFiles.fields([
   { name: "writerImage", maxCount: 1 },
 ]), addWriter);
 
-// 👥 Get all writers
+//  Get all writers
 router.get("/writers", getWriters);
 
-// 👤 Get a single writer by ID
+
 // router.get("/writers/:id", getWriterById);
 
-// 🗑️ Delete a writer
+
 router.delete("/writers/:id", deleteWriter);
 
 // router.get("/books/by-writer/:writerName", getBooksByWriterName);

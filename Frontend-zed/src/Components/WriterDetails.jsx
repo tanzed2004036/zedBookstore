@@ -33,7 +33,6 @@ const WriterDetails = () => {
 
   return (
     <div className="min-h-screen py-10 px-4 mt-10">
-      {/* Writer info section */}
       <div className="max-w-5xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden p-6">
         <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
           {/* Image */}
@@ -43,7 +42,6 @@ const WriterDetails = () => {
             className="w-24 h-28 sm:w-32 sm:h-40 md:w-48 md:h-60 object-cover rounded-lg flex-shrink-0"
           />
 
-          {/* Text beside image - only on md+ */}
           <div className="hidden md:flex flex-col justify-center space-y-4 text-left max-w-xl">
             <h3 className="mt-10 text-xl sm:text-2xl md:text-3xl font-semibold mb-6 text-amber-700">
               {writer.name}
@@ -56,7 +54,6 @@ const WriterDetails = () => {
             )}
           </div>
 
-          {/* Text below image - only on small screens */}
           <div className="mt-4 md:hidden text-center">
             <h2 className="text-lg xs:text-sm font-bold text-amber-700">
               {writer.name}
@@ -71,7 +68,7 @@ const WriterDetails = () => {
 
       </div>
 
-      {/* Books section below */}
+      {/* Books section  */}
       <h3 className="mt-10 text-[12px] xs:text-[10px] sm:text-2xl md:text-2xl font-semibold text-center mb-6">
         Books by {writer.name}
       </h3>

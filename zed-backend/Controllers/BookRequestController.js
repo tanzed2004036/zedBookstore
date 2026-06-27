@@ -22,7 +22,7 @@ export const getAllRequests = async (req, res) => {
 // Delete a request
 export const deleteRequest = async (req, res) => {
   try {
-    const { id } = req.params; // take request id from URL
+    const { id } = req.params; 
     const deleted = await Request.findByIdAndDelete(id);
 
     if (!deleted) {

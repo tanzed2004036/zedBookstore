@@ -14,7 +14,7 @@ function Navbar() {
           background: `linear-gradient(109deg,rgba(6, 3, 23, 1) 0%, rgba(3, 2, 50, 1) 0%, rgba(0, 0, 0, 1) 0%, rgba(6, 6, 59, 1) 50%, rgba(1, 192, 236, 1) 85%, rgba(109, 232, 175, 1) 100%)`,
         }}
       >
-        {/* Left side - Logo and Mobile Menu */}
+
         <div className="navbar-start">
           {/* Mobile Dropdown Menu */}
           <div className="dropdown">
@@ -70,7 +70,7 @@ function Navbar() {
           </NavLink>
         </div>
 
-        {/* Center - Desktop Menu */}
+        {/*  - Desktop Menu */}
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
@@ -88,7 +88,6 @@ function Navbar() {
           </ul>
         </div>
 
-        {/* Right - Button */}
         <div className="navbar-end">
           <NavLink
             to="/requests"
