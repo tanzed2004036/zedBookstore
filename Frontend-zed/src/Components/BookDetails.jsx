@@ -8,6 +8,7 @@ function BookDetails() {
   const [book, setBook] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isDownloading, setIsDownloading] = useState(false);
 
   const API_URL = import.meta.env.VITE_API_URL;
 
@@ -42,6 +43,7 @@ function BookDetails() {
  const downloadUrl = book.pdf.replace("/upload/", "/upload/fl_attachment/");
 
 const handleDownload = async () => {
+  setIsDownloading(true);
   try {
     const response = await fetch(book.pdf);
 
@@ -62,6 +64,9 @@ const handleDownload = async () => {
     console.error("Download failed:", err);
     window.open(book.pdf, "_blank");
   }
+  finally {
+      setIsDownloading(false); 
+    }
 };
 
   return (
@@ -111,9 +116,14 @@ const handleDownload = async () => {
 
           <button
             onClick={handleDownload}
-            className="mt-4 bg-rose-500 hover:bg-green-700 text-white px-5 py-2 rounded-md w-max mx-auto md:mx-0 transition"
+            disabled={isDownloading}
+            className={`mt-4 px-5 py-2 rounded-md w-max mx-auto md:mx-0 transition text-white ${
+              isDownloading 
+                ? "bg-gray-400 cursor-not-allowed" 
+                : "bg-rose-500 hover:bg-green-700"
+            }`}
           >
-            📥 Download PDF
+            {isDownloading ? "⏳ Downloading..." : "📥 Download PDF"}
           </button>
         </div>
       </div>
