@@ -7,7 +7,7 @@ function FrontPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const API_URL = import.meta.env.VITE_API_URL;
   const navigate = useNavigate(); 
 
   const handleSignIn = async (e) => {
@@ -16,7 +16,7 @@ function FrontPage() {
     setError("");
 
     try {
-      const res = await fetch("http://localhost:5000/zed/admin/login", {
+      const res = await fetch(`${API_URL}/zed/admin/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -29,7 +29,7 @@ function FrontPage() {
       } else {
         localStorage.setItem("adminToken", data.token);
         alert("Login successful")
-        navigate("/home"); // <-- redirect using React Router
+        navigate("/home");
       }
     } catch (err) {
       setError("Something went wrong. Try again.");
