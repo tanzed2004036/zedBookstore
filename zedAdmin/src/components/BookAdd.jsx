@@ -1,5 +1,4 @@
-import React, { useState, useRef } from "react"; // 👈 useRef যুক্ত করা হয়েছে ইনপুট রিসেট করার জন্য
-
+import React, { useState, useRef } from "react"; 
 function BookAdd() {
   const API_URL = import.meta.env.VITE_API_URL;
   const [formData, setFormData] = useState({
@@ -27,34 +26,44 @@ function BookAdd() {
     }
   };
 
-  const handlePdfChange = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      setPdf(e.target.files[0]);
-    }
-  };
 
-  //  Helper function — filename clean 
-  const sanitizeFileName = (file) => {
-    const ext = file.name.split(".").pop(); 
-    const clean =
-      file.name
-        .replace(/\[.*?\]/g, "") 
-        .replace(/[^\w\u0980-\u09FF._-]/g, "_") 
-        .replace(/_+/g, "_") 
-        .replace(/^_|_$/g, "") 
-        .trim() || `file_${Date.now()}`; 
+const handlePdfChange = (e) => {
+  const file = e.target.files?.[0];
+  if (!file) return;
 
-    return new File([file], `${clean}.${ext}`, { type: file.type });
-  };
+  if (file.size > 10 * 1024 * 1024) { 
+    alert("❌ PDF ফাইল সর্বোচ্চ ১০ MB হতে পারবে।");
+    e.target.value = ""; 
+    return;
+  }
+  setPdf(file);
+};
+
+  // //  Helper function — filename clean
+
+  // const sanitizeFileName = (file) => {
+  //   const ext = file.name.split(".").pop();
+  //   const nameWithoutExt = file.name.split(".").slice(0, -1).join("."); 
+
+  //   const clean =
+  //     nameWithoutExt
+  //       .replace(/\[.*?\]/g, "")
+  //       .replace(/[^\w\u0980-\u09FF._-]/g, "_")
+  //       .replace(/_+/g, "_")
+  //       .replace(/^_|_$/g, "")
+  //       .trim() || `file_${Date.now()}`;
+
+  //   return new File([file], `${clean}.${ext}`, { type: file.type });
+  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!image || !pdf) {
       alert("❌ দয়া করে ইমেজ এবং পিডিএফ দুটো ফাইলই সিলেক্ট করুন।");
-      return; 
+      return;
     }
 
-    setLoading(true); 
+    setLoading(true);
 
     const data = new FormData();
     Object.entries(formData).forEach(([key, value]) => data.append(key, value));
@@ -67,7 +76,7 @@ function BookAdd() {
         body: data,
       });
 
-      // ✅ Read as text first — avoids crash when server returns HTML
+      //  Read  text first 
       const text = await response.text();
       let result;
       try {
@@ -76,7 +85,7 @@ function BookAdd() {
         throw new Error(
           `Server returned non-JSON (status ${response.status}). ` +
             `Check your API_URL and server logs.\n\n` +
-            text.slice(0, 200), // show first 200 chars for debugging
+            text.slice(0, 200), 
         );
       }
 
@@ -99,7 +108,7 @@ function BookAdd() {
     } catch (error) {
       alert("❌ Error: " + error.message);
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
 

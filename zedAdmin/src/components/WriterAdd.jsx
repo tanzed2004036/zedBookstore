@@ -5,9 +5,10 @@ function WriterAdd() {
   const [formData, setFormData] = useState({
     name: "",
     Enname: "",
-    bio: "", // ✅ changed from description to bio
+    bio: "", 
   });
   const [image, setImage] = useState(null);
+  const [loading,setLoding]= useState(false)
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -28,7 +29,7 @@ function WriterAdd() {
     if (image) {
       data.append("writerImage", image);
     }
-
+    setLoding(true)
     try {
       const response = await fetch(`${API_URL}/zed/writers`, {
         method: "POST",
@@ -43,11 +44,13 @@ function WriterAdd() {
       const result = await response.json();
       alert("✅ লেখক সফলভাবে যোগ হয়েছে!");
 
-      // Reset form
       setFormData({ name: "", Enname: "", bio: "" });
       setImage(null);
     } catch (error) {
       alert("❌ Error: " + error.message);
+    }
+    finally{
+      setLoding(false)
     }
   };
 
@@ -77,7 +80,7 @@ function WriterAdd() {
           required
         />
         <textarea
-          name="bio" // ✅ updated here
+          name="bio" 
           placeholder="লেখকের বিবরণ"
           className="w-full border p-2 rounded h-28"
           onChange={handleChange}
@@ -111,9 +114,14 @@ function WriterAdd() {
 
         <button
           type="submit"
-          className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700"
+          disabled={loading}
+          className={`w-full py-2 rounded text-white ${
+            loading
+              ? "bg-blue-400 cursor-not-allowed"
+              : "bg-blue-600 hover:bg-blue-700"
+          }`}
         >
-          ➕ Add Writer
+          {loading ? "Adding Writer..." : " ➕ Add Writer"}
         </button>
       </form>
     </div>

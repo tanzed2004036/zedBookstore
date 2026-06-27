@@ -1,60 +1,66 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import FrontPage from './components/FronPage';
-import AdminNavbar from './components/AdminNavbar';
-import AdminHome from './components/Home';
-import BookAdd from './components/BookAdd';
-import WriterAdd from './components/WriterAdd';
-import BookRequestList from './components/Requests';
+import FrontPage from "./components/FronPage";
+import AdminNavbar from "./components/AdminNavbar";
+import AdminHome from "./components/Home";
+import BookAdd from "./components/BookAdd";
+import WriterAdd from "./components/WriterAdd";
+import BookRequestList from "./components/Requests";
 import Footer from "./components/Footer";
 
 function App() {
   return (
     <Router>
-      <div className="pt-16"> {/* Padding for fixed navbar */}
+      <div className="pt-16">
+        {" "}
+        {/* Padding for fixed navbar */}
         <Routes>
           {/* Front page */}
           <Route path="/" element={<FrontPage />} />
 
           {/* Admin pages */}
-          <Route 
-            path="/home" 
+          <Route
+            path="/home"
             element={
               <div className="">
                 <AdminNavbar />
                 <AdminHome />
-                <Footer/>
+                <Footer />
               </div>
-            } 
+            }
           />
-          <Route 
-            path="/add-book" 
+          <Route
+            path="/add-book"
             element={
               <>
                 <AdminNavbar />
                 <BookAdd />
-                <Footer/>
+                <Footer />
               </>
-            } 
+            }
           />
-          <Route 
-            path="/add-writer" 
+          <Route
+            path="/add-writer"
             element={
               <>
                 <AdminNavbar />
                 <WriterAdd />
-                <Footer/>
+                <Footer />
               </>
-            } 
+            }
           />
-          <Route 
-            path="/requests" 
+          <Route
+            path="/requests"
             element={
-              <>
+              <div className="min-h-screen flex flex-col">
                 <AdminNavbar />
-                <BookRequestList />
-                <Footer/>
-              </>
-            } 
+
+                <main className="flex-1">
+                  <BookRequestList />
+                </main>
+
+                <Footer />
+              </div>
+            }
           />
         </Routes>
       </div>

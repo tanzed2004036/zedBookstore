@@ -1,6 +1,11 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 function Navbar() {
+  const navLinkClass = ({ isActive }) =>
+  isActive
+    ? "text-red-500 font-semibold"
+    : "hover:text-cyan-300";
   return (
     <div className="my-7">
       <div
@@ -34,26 +39,26 @@ function Navbar() {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <a href="/">হোম</a>
+                <NavLink to="/">হোম</NavLink>
               </li>
               <li>
-                <a href="/books">বই</a>
+                <NavLink to="/books">বই</NavLink>
               </li>
               <li>
-                <a href="/writers">লেখক</a>
+                <NavLink to="/writers">লেখক</NavLink>
               </li>
               <li>
-                <a href="/categories">ক্যাটাগরি</a>
+                <NavLink to="/categories">ক্যাটাগরি</NavLink>
               </li>
               <li>
-                <a href="/requests">রিকোয়েস্ট</a>
+                <NavLink to="/requests">রিকোয়েস্ট</NavLink>
               </li>
             </ul>
           </div>
 
           {/* Logo */}
-          <a
-            href="/"
+          <NavLink
+            to="/"
             className="btn btn-ghost font-extrabold tracking-wider text-sm sm:text-lg md:text-xl lg:text-2xl"
           >
             <span className="text-purple-700 font-black text-sm sm:text-lg md:text-xl lg:text-2xl">
@@ -62,35 +67,35 @@ function Navbar() {
             <span className="text-yellow-400 ml-1 text-sm sm:text-lg md:text-xl lg:text-2xl">
               Bookstore
             </span>
-          </a>
+          </NavLink>
         </div>
 
         {/* Center - Desktop Menu */}
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <a href="/">হোম</a>
+              <NavLink className={navLinkClass} to="/">হোম</NavLink>
             </li>
             <li>
-              <a href="/books">বই</a>
+              <NavLink className={navLinkClass} to="/books">বই</NavLink>
             </li>
             <li>
-              <a href="/writers">লেখক</a>
+              <NavLink className={navLinkClass} to="/writers">লেখক</NavLink>
             </li>
             <li>
-              <a href="/categories">ক্যাটাগরি</a>
+              <NavLink className={navLinkClass} to="/categories">ক্যাটাগরি</NavLink>
             </li>
           </ul>
         </div>
 
         {/* Right - Button */}
         <div className="navbar-end">
-          <a
+          <NavLink
+            to="/requests"
             className="btn px-2 py-1 text-sm sm:px-4 sm:py-2 sm:text-base hidden sm:inline-block rounded-xl"
-            href="/requests"
           >
             Request
-          </a>
+          </NavLink>
         </div>
       </div>
     </div>

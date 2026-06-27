@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { NavLink } from "react-router-dom";
 function AdminNavbar() {
   const [open, setOpen] = useState(false);
 
@@ -13,18 +13,51 @@ function AdminNavbar() {
 
         {/* Desktop Menu */}
         <div className="hidden lg:flex items-center space-x-6">
-          <a href="/home" className="hover:text-green-400">
-            Home
-          </a>
-          <a href="/add-book" className="hover:text-green-400">
-            Add Book
-          </a>
-          <a href="/add-writer" className="hover:text-green-400">
-            Add Writer
-          </a>
-          <a href="/requests" className="hover:text-green-400">
-            Request List
-          </a>
+          <div className="hidden lg:flex items-center space-x-6">
+            <NavLink
+              to="/home"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-green-400 font-semibold"
+                  : "hover:text-green-400"
+              }
+            >
+              Home
+            </NavLink>
+
+            <NavLink
+              to="/add-book"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-green-400 font-semibold"
+                  : "hover:text-green-400"
+              }
+            >
+              Add Book
+            </NavLink>
+
+            <NavLink
+              to="/add-writer"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-green-400 font-semibold"
+                  : "hover:text-green-400"
+              }
+            >
+              Add Writer
+            </NavLink>
+
+            <NavLink
+              to="/requests"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-green-400 font-semibold"
+                  : "hover:text-green-400"
+              }
+            >
+              Request List
+            </NavLink>
+          </div>
 
           {/* Logout button on right side */}
           <button
@@ -61,36 +94,59 @@ function AdminNavbar() {
           {open && (
             <ul className="absolute right-0 mt-2 w-40 bg-gray-700 rounded shadow p-2 space-y-1">
               <li>
-                <a href="/home" className="block px-2 py-1 hover:bg-gray-600 rounded">
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-green-400 font-semibold"
+                      : "hover:text-green-400"
+                  }
+                  href="/home"
+                  className="block px-2 py-1 hover:bg-gray-600 rounded"
+                >
                   Home
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-green-400 font-semibold"
+                      : "hover:text-green-400"
+                  }
                   href="/add-book"
                   className="block px-2 py-1 hover:bg-gray-600 rounded"
                 >
                   Add Book
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-green-400 font-semibold"
+                      : "hover:text-green-400"
+                  }
                   href="/add-writer"
                   className="block px-2 py-1 hover:bg-gray-600 rounded"
                 >
                   Add Writer
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-green-400 font-semibold"
+                      : "hover:text-green-400"
+                  }
                   href="/requests"
                   className="block px-2 py-1 hover:bg-gray-600 rounded"
                 >
                   Request List
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a
+                <NavLink
                   onClick={() => {
                     localStorage.removeItem("token");
                     window.location.href = "/";
@@ -98,7 +154,7 @@ function AdminNavbar() {
                   className="w-full text-left px-2 py-1 hover:bg-red-600 rounded"
                 >
                   Logout
-                </a>
+                </NavLink>
               </li>
             </ul>
           )}

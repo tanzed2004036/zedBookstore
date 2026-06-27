@@ -8,14 +8,18 @@ const router = express.Router();
 import { uploadFiles } from "../config/cloudinary.js"; 
 
 // add book
-router.post(
-  "/books",
-  uploadFiles.fields([         
+router.post("/books", (req, res, next) => {
+  uploadFiles.fields([
     { name: "image", maxCount: 1 },
     { name: "pdf", maxCount: 1 },
-  ]),
-  addBook
-);
+  ])(req, res, (err) => {
+    if (err) {
+      console.error("Multer/Cloudinary Error:", err); 
+      return res.status(500).json({ message: "❌ ফাইল আপলোড ব্যর্থ: " + err.message });
+    }
+    next();
+  });
+}, addBook);
 
 
 // 📚 Get all books

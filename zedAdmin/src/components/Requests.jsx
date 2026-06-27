@@ -43,10 +43,12 @@ const BookRequestList = () => {
           <table className="w-full min-w-[600px] border border-gray-300 rounded-lg shadow-md">
             <thead className="bg-gray-100">
               <tr>
-                <th className="py-2 px-3 text-left max-w-[200px] break-words">
+                <th className="py-2 px-3 text-center max-w-[200px] break-words">
                   Book Title
                 </th>
-                <th className="py-2 px-3 text-left">Submitted</th>
+                <th className="py-2 px-3 text-center">Author</th>
+                <th className="py-2 px-3 text-center">Message</th>
+                <th className="py-2 px-3 text-center">Submitted</th>
                 <th className="py-2 px-3 text-center">Action</th>
               </tr>
             </thead>
@@ -57,11 +59,13 @@ const BookRequestList = () => {
                   className="border-t hover:bg-gray-50 cursor-pointer"
                   onClick={() => setSelectedRequest(req)}
                 >
-                  <td className="py-2 px-3 max-w-[200px] break-words">
+                  <td className="py-2 px-3 max-w-[200px] break-words text-center">
                     {req.bookTitle}
                   </td>
-                  <td className="py-2 px-3 text-sm text-gray-500">
-                    {new Date(req.createdAt).toLocaleString()}
+                  <td className="py-2 px-3 text-center">{req.author}</td>
+                  <td className="py-2 px-3 text-center">{req.message}</td>
+                  <td className="py-2 px-3 text-sm text-gray-500 text-center">
+                    {new Date(req.createdAt).toLocaleDateString()}
                   </td>
                   <td
                     className="py-2 px-3 text-center"
